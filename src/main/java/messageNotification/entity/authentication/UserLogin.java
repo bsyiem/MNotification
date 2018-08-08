@@ -107,6 +107,10 @@ public class UserLogin
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+	
+	public void removeRole(Role role) {
+		this.roles.remove(role);
+	}
 
 	public boolean isEnabled() {
 		return enabled;

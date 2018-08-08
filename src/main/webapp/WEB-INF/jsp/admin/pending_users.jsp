@@ -5,11 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User Management - Pending Users</title>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
 <script type="text/javascript">
-
 $(document).ready(function() {
     $('#user_table').DataTable( {
         "ajax": {
@@ -67,10 +64,10 @@ $(document).ready(function() {
 	<table id="user_table" class="table table-striped table-bordered">
 	    <thead>
 	        <tr>
-	            <th>email</th>
-	            <th>ADMIN</th>
-	            <th>AUTHORIZED</th>
-	            <th>PENDING</th>
+	            <th>EMAIL</th>
+	            <th>Role(ADMIN)</th>
+	            <th>Role(AUTHORIZED)</th>
+	            <th>Role(PENDING)</th>
 	        </tr>
 	    </thead>
 	</table> 

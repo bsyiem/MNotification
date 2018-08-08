@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import messageNotification.entity.authentication.Role;
 import messageNotification.entity.authentication.UserLogin;
 
 @Transactional
@@ -60,15 +61,18 @@ public class UserLoginDAO implements IDAO{
 		return userLogin;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public void updatePassword(UserLogin userLogin) {
+	public void updateRoles(String email,Role role) {
 		Session session = getSession();
-		String hql = "UPDATE UserLogin set password =:password WHERE email =:email";
-		Query<UserLogin> query = session.createQuery(hql);
-		query.setParameter("password", userLogin.getPassword());
-		query.setParameter("email", userLogin.getEmail());
-		
-		query.executeUpdate();
+		UserLogin userLogin = session.load(UserLogin.class, email);
+		userLogin.removeRole(role);
+		session.update(userLogin);
+	}
+	
+	public void updatePassword(UserLogin userLogin) {
+		Session session = getSession();		
+		UserLogin selectedUserLogin = session.load(UserLogin.class, userLogin.getEmail());
+		selectedUserLogin.setPassword(userLogin.getPassword());
+		session.update(selectedUserLogin);
 	}
 
 }
