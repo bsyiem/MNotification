@@ -9,7 +9,7 @@
 <title>home</title>
 </head>
 <body>
-<div class ="authenticated-margin">
+<div class ="container-fluid authenticated-margin">
 hello <c:out value="${user}"></c:out>
 </div>
 <h1>Hello 1</h1>

@@ -33,7 +33,7 @@ public class RegistrationController
 	@Autowired
 	private UserRegistrationService userRegistrationService;
 	
-	@GetMapping("/home")
+	@GetMapping("/")
 	public String getHello(Model model){
 		model.addAttribute("user",UserUtils.getUserLogin().getEmail());
 		return "home";

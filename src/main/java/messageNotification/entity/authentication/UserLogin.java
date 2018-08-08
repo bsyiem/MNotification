@@ -8,6 +8,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.Set;
@@ -42,6 +43,7 @@ public class UserLogin
 	@Column(name = "email")
 	private String email;
 	
+	@JsonIgnore
 	@Column(name = "password")
 	private String password;
 	

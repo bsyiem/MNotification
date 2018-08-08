@@ -35,7 +35,7 @@ public class EntityManagerFactoryConfig
 		 */
 		Properties jpaProperties = new Properties();
 		jpaProperties.setProperty(Environment.SHOW_SQL, "true");
-		jpaProperties.setProperty(Environment.DEFAULT_SCHEMA, "zorb_schema"); //must be changed
+		jpaProperties.setProperty(Environment.DEFAULT_SCHEMA, "main");
 		jpaProperties.setProperty(Environment.DRIVER, "org.postgresql.Driver");		
 		jpaProperties.setProperty(Environment.DIALECT, "org.hibernate.dialect.PostgreSQL9Dialect");
 		jpaProperties.setProperty(Environment.CURRENT_SESSION_CONTEXT_CLASS, "org.springframework.orm.hibernate5.SpringSessionContext");

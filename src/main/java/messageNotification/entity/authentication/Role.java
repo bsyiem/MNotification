@@ -21,13 +21,8 @@ public class Role
 	public enum RoleType 
 	{
 		PENDING, 
-		PUBLIC_ENQUIRY, 
-		MIS_USER,
-		ACCOUNTANT,
-		AAO,
-		AO,
-		DOMAIN_ADMIN,
-		APPLICATION_ADMIN
+		ADMIN,
+		AUTHORIZED
 	};
 	
 	

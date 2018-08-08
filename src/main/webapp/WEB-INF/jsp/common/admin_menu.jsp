@@ -10,7 +10,7 @@
    				 		User Management
   					</button>
   					<div class = "dropdown-menu">
-  						<a class = "dropdown-item" href="#">Pending Users</a>
+  						<a class = "dropdown-item" href="/admin/pendingUsers">Pending Users</a>
   						<a class = "dropdown-item" href="#">Enable/Disable Users</a>
   					</div>
   				</div>

@@ -50,7 +50,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter
 		    .usernameParameter("email")
 		    .passwordParameter("password")
 		    .failureUrl("/login?error=true")
-		    .defaultSuccessUrl("/home")
+		    .defaultSuccessUrl("/")
 		    .permitAll()
 		    .and()
 		//logout page is accessible to all

@@ -3,7 +3,7 @@
  */
 $(function (){
 	$('input').focus(function (){
-		$('.navbar.fixed-top').addClass('d-xs-none d-sm-none');
+		$('.navbar.fixed-top').addClass('d-xs-none');
 	});
 });
 
@@ -12,6 +12,6 @@ $(function (){
  */
 $(function (){
 	$('input').blur(function (){
-		$('.navbar.fixed-top').removeClass('d-xs-none d-sm-none');
+		$('.navbar.fixed-top').removeClass('d-xs-none');
 	});
 });

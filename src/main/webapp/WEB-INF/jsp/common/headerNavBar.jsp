@@ -9,13 +9,16 @@
   	
   	 <div class="collapse navbar-collapse" id="collapsibleNavbar">
   	 	 <ul class="navbar-nav mr-auto">
-    		<!-- unauthenticated menu -->
+    		<!-- user specific menus -->
     		<%@ include file = "/WEB-INF/jsp/common/admin_menu.jsp" %>
     	</ul>
     	<!-- right aligned menu -->
     	<ul class="navbar-nav navbar-right">
-    		<!-- authenticated menu -->
+    		
+    		<!-- unauthenticated menu -->
     		<%@ include file = "/WEB-INF/jsp/common/anonymous_menu.jsp" %>
+       		
+       		<!-- authenticated menu -->
        		<%@ include file = "/WEB-INF/jsp/common/authenticated_menu.jsp" %>
     	</ul>
   	 </div>

@@ -94,6 +94,10 @@ public class UserRegistrationService
 		return userLoginDAO.getAll();
 	}
 	
+	public List<UserLogin> getUserRoles(){
+		return userLoginDAO.getAll();
+	}
+	
 	public boolean isEqualCurrentPassword(String email, String currentPassword) {
 		return passwordEncoder.matches(currentPassword, this.findUserLoginByEmail(email).getPassword());
 	}

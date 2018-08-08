@@ -17,9 +17,9 @@ public class DataSourceConfig
 		HikariDataSource ds = new HikariDataSource();
         ds.setMaximumPoolSize(100);
         ds.setDataSourceClassName("org.postgresql.ds.PGSimpleDataSource");
-        ds.addDataSourceProperty("url","jdbc:postgresql://localhost:5432/zorb_db_init"); //must be changed
-        ds.addDataSourceProperty("user", "ZorB");
-        ds.addDataSourceProperty("password", "ZorB");
+        ds.addDataSourceProperty("url","jdbc:postgresql://localhost:5432/m_notification");
+        ds.addDataSourceProperty("user", "mNotify");
+        ds.addDataSourceProperty("password", "mNotify");
 //        ds.addDataSourceProperty("cachePrepStmts", true);
 //        ds.addDataSourceProperty("prepStmtCacheSize", 250);
 //        ds.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
