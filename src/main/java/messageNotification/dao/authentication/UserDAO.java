@@ -14,11 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 
 import org.hibernate.query.Query;
-//import org.hibernate.Query;
 
-/*
- * NOTE: commented Query<> are used with hibernate version 5.x.x
- */
 @Transactional
 @Repository
 public class UserDAO implements IDAO
@@ -100,7 +96,6 @@ public class UserDAO implements IDAO
 		Session session = getSession();
 		
 		UserLogin userLogin = session.get(UserLogin.class, (String)email);
-		
 		
 		return userLogin == null? null:userLogin.getUser();
 	}

@@ -2,7 +2,6 @@ package messageNotification.services.authentication;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -54,7 +53,7 @@ public class UserRegistrationService
 //		default role is assigned to user on signup
 		
 		Role role = new Role(Role.RoleType.PENDING);
-		Set<Role> roles = new HashSet<>();
+		HashSet<Role> roles = new HashSet<>();
 		roles.add(role);
 		
 		UserLogin userLogin = new UserLogin();
@@ -96,6 +95,10 @@ public class UserRegistrationService
 	
 	public List<UserLogin> getUserRoles(){
 		return userLoginDAO.getAll();
+	}
+	
+	public void updateRoles(UserLogin uLogin) {
+		userLoginDAO.updateRoles(uLogin);
 	}
 	
 	public boolean isEqualCurrentPassword(String email, String currentPassword) {

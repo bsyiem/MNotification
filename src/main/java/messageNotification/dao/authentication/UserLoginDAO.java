@@ -10,8 +10,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import messageNotification.entity.authentication.Role;
 import messageNotification.entity.authentication.UserLogin;
 
 @Transactional
@@ -61,11 +59,21 @@ public class UserLoginDAO implements IDAO{
 		return userLogin;
 	}
 	
-	public void updateRoles(String email,Role role) {
+	public Object loadById(Object email) {
 		Session session = getSession();
-		UserLogin userLogin = session.load(UserLogin.class, email);
-		userLogin.removeRole(role);
-		session.update(userLogin);
+		
+		UserLogin userLogin = session.load(UserLogin.class, (String)email);
+		
+		return userLogin;
+	}
+	
+	
+	public void updateRoles(UserLogin uLogin) {
+		Session session = getSession();
+		session.update(uLogin);
+//		UserLogin userLoginToUpdate = session.load(UserLogin.class, uLogin.getEmail());
+//		userLoginToUpdate.setRoles(uLogin.getRoles());
+//		session.update(userLoginToUpdate);
 	}
 	
 	public void updatePassword(UserLogin userLogin) {

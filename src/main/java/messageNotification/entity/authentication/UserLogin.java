@@ -108,8 +108,12 @@ public class UserLogin
 		this.roles = roles;
 	}
 	
-	public void removeRole(Role role) {
-		this.roles.remove(role);
+	public boolean addRole(Role role) {
+		return this.roles.add(role);
+	}
+	
+	public boolean removeRole(Role role) {
+		return this.roles.remove(role);
 	}
 
 	public boolean isEnabled() {
