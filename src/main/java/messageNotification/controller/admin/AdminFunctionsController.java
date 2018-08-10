@@ -1,6 +1,9 @@
 package messageNotification.controller.admin;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,30 +46,50 @@ public class AdminFunctionsController {
 	}
 	
 	@PostMapping(value = "/admin/manageUserRoles")
-	public String setUserRoles(HttpServletRequest request,Model model) {
+	public String setUserRoles(HttpServletRequest request,Model model){
 		model.addAttribute("user",UserUtils.getUserLogin().getEmail());
 		
-		for(UserLogin uLogin: userRegistrationService.findAllUserLogins()) {
-			for(Role.RoleType role: Role.RoleType.values()) {			
-				/*
-				 * removes role if the respective checkbox is unchecked and adds role if box is checked
-				 * duplicate roles are not added as the UserLogin.roles attribute is a Set
-				*/
-				if(request.getParameter(uLogin.getEmail()+"_"+role.toString()) == null) {
-					uLogin.removeRole(new Role(role));
+		/*
+		 * gets the map from parameter name to values
+		 * here since the checkboxes used are arrays, the map is from a String to String[]
+		 * i.e, param_name -> values[]
+		 * single name contains multiple values
+		 */
+		Map<String,String[]> parameterMap = new HashMap<>(request.getParameterMap());
+		
+		/*
+		* we select the first key in the map (which is the email) and update the roles (values[]) of the userLogin associated with that email
+		* we remove the key (email) after the userLogin has been updated
+		* NOTE: the request.getParameterMap only receives data where the checkboxes have been "checked" and so when we remove all roles from
+		* a user, that user is not in the parameterMap keySet and so the userLogin will not be updated. To address this issue we add value[0] = PENDING
+		* to a user when all other checkboxes (ADMIN, AUTHORIZED) are not checked (done in the manage_user_roles.jsp). 
+		*/
+		while(!parameterMap.isEmpty()){
+			
+			Map.Entry<String, String[]> entry = parameterMap.entrySet().iterator().next();
+			String email = entry.getKey().split("\\[")[0];
+			
+			//find userlogin by email
+			UserLogin userLogin = userRegistrationService.findUserLoginByEmail(email);
+			
+			userLogin.setRoles(new HashSet<>());
+			
+			//Set new roles to user
+			for(String value: entry.getValue()) {
+				Role role = new Role(RoleType.PENDING);
+				switch(value) {
+				case "ADMIN":
+					role = new Role(RoleType.ADMIN);
+					break;
+				case "AUTHORIZED":
+					role = new Role(RoleType.AUTHORIZED);
+					break;
 				}
-				else {
-					uLogin.addRole(new Role(role));
-				}
-				
-				/*
-				 * if no role is set then default to pending
-				 */
-				if(uLogin.getRoles().size()==0) {
-					uLogin.addRole(new Role(RoleType.PENDING));
-				}
+				userLogin.addRole(role);
 			}
-			userRegistrationService.updateRoles(uLogin);
+	
+			userRegistrationService.updateRoles(userLogin);			
+			parameterMap.remove(entry.getKey());
 		}
 		return "/admin/manage_user_roles";
 	}

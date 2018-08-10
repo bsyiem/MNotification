@@ -60,7 +60,7 @@ public class Role
 		this.id = role.ordinal();
 		this.role = role.toString();
 	}
-
+	
 	public int getId() {
 		return id;
 	}

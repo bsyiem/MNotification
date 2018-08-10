@@ -8,8 +8,8 @@
 <title>User Management - User Roles</title>
 
 <script type="text/javascript">
+var extraData = [];
 $(document).ready(function() {
-
 	//create and populate the datatable
 	var dataTable = $('#user_table').DataTable( {
         "ajax": {
@@ -23,12 +23,12 @@ $(document).ready(function() {
             { 
             	"data" : "roles",
             	"render" : function (data,type,row){
-            		var checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"_ADMIN\"></div>";
+            		var checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"[]\" value=\"ADMIN\"></div>";
             		for(var i = 0; i<data.length;i++){
             			if(data[i].role == "ADMIN"){
-            				checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"_ADMIN\" checked></div>";
+            				checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"[]\" checked value=\"ADMIN\"></div>";
             				if(row.email == $("#user").html()){
-            					checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"_ADMIN\" checked readonly></div>";
+            					checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"[]\" checked readonly value=\"ADMIN\"></div>";
             					
             				}
             			}
@@ -39,10 +39,10 @@ $(document).ready(function() {
             { 
             	"data" : "roles",
             	"render" : function (data,type,row){
-            		var checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"_AUTHORIZED\"></div>";
+            		var checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"[]\" value=\"AUTHORIZED\"></div>";
             		for(var i = 0; i<data.length;i++){
             			if(data[i].role == "AUTHORIZED"){
-            				checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"_AUTHORIZED\" checked></div>";
+            				checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"[]\" checked value=\"AUTHORIZED\"></div>";
             			}
             		}
             		return checkBox;
@@ -63,12 +63,30 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		//var data = dataTable.$('input,select,textarea').serializeArray(); //used for input,select and textarea
-		var data = dataTable.$('input').serialize(); //used for only input as we only have input form tag 
-		//data = JSON.stringify(data);
-
+		var data = dataTable.$('input').serializeArray(); //used for only input as we only have input form tag 
+		
+		$.merge(data,extraData);
+		
+		$.each(data,function(i,field){
+			console.log(field.name+"="+field.value);
+		});
+		
 		sendData("/admin/manageUserRoles","POST",data);
 
 		alert("User Roles Saved");
+	});
+	
+	//appends a extra data object into the data array that we send via ajax
+	//this extra object captures the fact that a user has no role and hence must be defaulted to PENDING
+	$(document).on('click','input[type="checkbox"]', function(){
+		var email = $(this).attr("name").split("[")[0];
+		var userRoles = $('input[name=\"'+email+'\\[\\]\"]:checked');
+		if(userRoles.length==0){
+			extraData.push({name:email+"[]", value:"PENDING"});
+			$.each(extraData,function(i,field){
+				console.log(field.name+"="+field.value);
+			});
+		}		
 	});
 } );
 </script>
