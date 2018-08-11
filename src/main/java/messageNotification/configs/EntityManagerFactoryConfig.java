@@ -34,7 +34,7 @@ public class EntityManagerFactoryConfig
 		 * JPA/HIBERNATE properties
 		 */
 		Properties jpaProperties = new Properties();
-		jpaProperties.setProperty(Environment.SHOW_SQL, "true");
+		jpaProperties.setProperty(Environment.SHOW_SQL, "false");
 		jpaProperties.setProperty(Environment.DEFAULT_SCHEMA, "main");
 		jpaProperties.setProperty(Environment.DRIVER, "org.postgresql.Driver");		
 		jpaProperties.setProperty(Environment.DIALECT, "org.hibernate.dialect.PostgreSQL9Dialect");

@@ -13,7 +13,7 @@ $(document).ready(function() {
 	//create and populate the datatable
 	var dataTable = $('#user_table').DataTable( {
         "ajax": {
-            "url": "/admin/getUserRoles",
+            "url": "/admin/getUserLoginDetails",
             "dataSrc": ""
         },
         "columns": [
@@ -28,8 +28,8 @@ $(document).ready(function() {
             			if(data[i].role == "ADMIN"){
             				checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"[]\" checked value=\"ADMIN\"></div>";
             				if(row.email == $("#user").html()){
-            					checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"[]\" checked readonly value=\"ADMIN\"></div>";
-            					
+            					checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"[]\" checked disabled value=\"ADMIN\"></div>";
+            					checkBox += "<input type = \"hidden\" value=\"ADMIN\" name=\""+row.email+"[]\">"; 
             				}
             			}
             		}
@@ -65,11 +65,8 @@ $(document).ready(function() {
 		//var data = dataTable.$('input,select,textarea').serializeArray(); //used for input,select and textarea
 		var data = dataTable.$('input').serializeArray(); //used for only input as we only have input form tag 
 		
+		//merge the checked data with data that involves users where all roles have been removed (defaulted to PENDING)
 		$.merge(data,extraData);
-		
-		$.each(data,function(i,field){
-			console.log(field.name+"="+field.value);
-		});
 		
 		sendData("/admin/manageUserRoles","POST",data);
 
@@ -83,9 +80,6 @@ $(document).ready(function() {
 		var userRoles = $('input[name=\"'+email+'\\[\\]\"]:checked');
 		if(userRoles.length==0){
 			extraData.push({name:email+"[]", value:"PENDING"});
-			$.each(extraData,function(i,field){
-				console.log(field.name+"="+field.value);
-			});
 		}		
 	});
 } );

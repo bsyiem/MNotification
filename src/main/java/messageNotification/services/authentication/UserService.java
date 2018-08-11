@@ -15,7 +15,7 @@ import messageNotification.entity.authentication.UserLogin;
 import messageNotification.model.authentication.UserSignUp;
 
 @Service
-public class UserRegistrationService 
+public class UserService 
 {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -26,11 +26,11 @@ public class UserRegistrationService
 	@Autowired
 	private UserLoginDAO userLoginDAO;
 
-	public UserRegistrationService() {
+	public UserService() {
 		super();
 	}
 
-	public UserRegistrationService(UserDAO userDAO) {
+	public UserService(UserDAO userDAO) {
 		super();
 		this.userDAO = userDAO;
 	}
@@ -93,12 +93,8 @@ public class UserRegistrationService
 		return userLoginDAO.getAll();
 	}
 	
-	public List<UserLogin> getUserRoles(){
-		return userLoginDAO.getAll();
-	}
-	
-	public void updateRoles(UserLogin uLogin) {
-		userLoginDAO.updateRoles(uLogin);
+	public void updateUserLogin(UserLogin uLogin) {
+		userLoginDAO.updateUserLogin(uLogin);
 	}
 	
 	public boolean isEqualCurrentPassword(String email, String currentPassword) {

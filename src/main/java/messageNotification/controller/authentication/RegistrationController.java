@@ -25,13 +25,13 @@ import messageNotification.entity.authentication.UserLogin;
 import messageNotification.model.authentication.ChangePassword;
 import messageNotification.model.authentication.Login;
 import messageNotification.model.authentication.UserSignUp;
-import messageNotification.services.authentication.UserRegistrationService;
+import messageNotification.services.authentication.UserService;
 
 @Controller
 public class RegistrationController 
 {
 	@Autowired
-	private UserRegistrationService userRegistrationService;
+	private UserService userRegistrationService;
 	
 	@GetMapping("/")
 	public String getHello(Model model){

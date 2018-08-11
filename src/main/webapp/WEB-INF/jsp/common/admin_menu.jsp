@@ -2,7 +2,7 @@
 	<li class = "nav-item">
 		<div class = "dropdown">
 			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-   				 Go To
+   				 Admin Menu
   			</button>
   			<div class = "dropdown-menu">
   				<div class = "dropdown  dropright">
@@ -11,12 +11,14 @@
   					</button>
   					<div class = "dropdown-menu">
   						<a class = "dropdown-item" href="/admin/manageUserRoles">Manage User Roles</a>
-  						<a class = "dropdown-item" href="#">Enable/Disable Users</a>
-  						<a class = "dropdown-item" href="#">Delete User</a>
+  						<a class = "dropdown-item" href="/admin/manageUserEnabledStatus">Enable/Disable Users</a>
+  						<a class = "dropdown-item" href="/admin/removeUsers">Delete User</a>
   					</div>
   				</div>
+  				<!--
   				<a class = "dropdown-item" href="#">Search</a>
   				<a class = "dropdown-item" href="#">Report</a>
+  				-->
   			</div>
 		</div>
 	</li>

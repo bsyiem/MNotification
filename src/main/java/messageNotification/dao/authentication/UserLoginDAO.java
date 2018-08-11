@@ -68,7 +68,7 @@ public class UserLoginDAO implements IDAO{
 	}
 	
 	
-	public void updateRoles(UserLogin uLogin) {
+	public void updateUserLogin(UserLogin uLogin) {
 		Session session = getSession();
 		session.update(uLogin);
 //		UserLogin userLoginToUpdate = session.load(UserLogin.class, uLogin.getEmail());
