@@ -18,9 +18,6 @@ function sendData(url,requestType,data){
 	$.ajax({
 		url : url,
 		type: requestType,
-		data: data,
-		success: function(msg){
-			window.location.reload(true);
-		}
+		data: data
 	});
 }

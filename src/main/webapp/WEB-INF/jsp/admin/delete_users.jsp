@@ -38,11 +38,12 @@ $(document).ready(function() {
 	//Onclick of bottom nav-bar button, submit our datatable form
 	$('#datatable_form_submit').on('click',function(e){
 		e.preventDefault();
-		$('#user_enabled_form').submit();
+		$('#delete_user_form').submit();
+		dataTable.ajax.reload(null,false);
 	});
 	
 	//submit form via ajax post
-	$('#user_enabled_form').on('submit',function(e){
+	$('#delete_user_form').on('submit',function(e){
 		e.preventDefault();
 		
 		//var data = dataTable.$('input,select,textarea').serializeArray(); //used for input,select and textarea
@@ -63,7 +64,7 @@ $(document).ready(function() {
 
 <div id = "user" style="display:hidden">${user}</div>
 <div class ="container-fluid authenticated-margin">
-	<form id = "user_enabled_form">
+	<form id = "delete_user_form">
 	
 		<table id="user_table" class="table table-striped table-bordered">
 		    <thead>

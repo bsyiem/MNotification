@@ -46,6 +46,7 @@ $(document).ready(function() {
 	$('#datatable_form_submit').on('click',function(e){
 		e.preventDefault();
 		$('#user_enabled_form').submit();
+		dataTable.ajax.reload(null,false);
 	});
 	
 	//submit form via ajax post

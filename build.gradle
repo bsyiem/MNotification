@@ -86,6 +86,9 @@ dependencies {
    	//jackson dependency
    	compile 'com.fasterxml.jackson.core:jackson-core:2.9.6'
    	
+   	//apache POI for excel utils
+   	compile 'org.apache.poi:poi:3.17'
+   	
    	//gson dependency
 //   	compile 'com.google.code.gson:gson:2.8.5'
    	   	

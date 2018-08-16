@@ -11,6 +11,7 @@
   	 	 <ul class="navbar-nav mr-auto">
     		<!-- user specific menus -->
     		<%@ include file = "/WEB-INF/jsp/common/admin_menu.jsp" %>
+    		<%@ include file = "/WEB-INF/jsp/common/authorized_menu.jsp" %>
     	</ul>
     	<!-- right aligned menu -->
     	<ul class="navbar-nav navbar-right">
