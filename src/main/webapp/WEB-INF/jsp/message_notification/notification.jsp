@@ -22,7 +22,7 @@
 	<div class = "row">
 		<div class = "col-sm-10 offset-sm-1">
 			
-			<form id="login_form" action="/message_notification" method="post">			
+			<form id="login_form" action="/authorized/send_notification" method="post" enctype="multipart/form-data">			
 			
 				<div class="card">
 					
@@ -36,7 +36,8 @@
 							<tr>
 								<td>
 									<div class = "form-group">
-										<input type = "file" name = "fileLocation" class= "form-control" /> 
+										<input type = "file" name = "fileLocation" class= "form-control" accept=".xls,.xlsx"/>
+										<input type="hidden" name="${_csrf.parameterName}" value = "${_csrf.token}"/>
 									</div>
 								</td>
 							</tr>

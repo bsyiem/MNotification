@@ -4,12 +4,12 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class DataExtract {
 	
@@ -21,10 +21,10 @@ public class DataExtract {
 	public DataExtract(MultipartFile file) throws Exception {
 		super();
 		try {
-			this.workbook = new HSSFWorkbook(file.getInputStream());
+			this.workbook = new XSSFWorkbook(file.getInputStream());
 			this.sheet = workbook.getSheetAt(0);
 		}catch (Exception e) {
-			throw new Exception("Unable to upload file");
+			throw new Exception("Unable to upload file: or file may be corrupted");
 		}		
 	}
 	
@@ -42,13 +42,13 @@ public class DataExtract {
 	}
 	
 	//returns all the mobile numbers in the excel sheet
-	public Set<Long> getAllMobileNumbers(int mobileNumberColumnIndex){
+	public Set<Long> getAllMobileNumbers(){
 		Set<Long> mobileNumbers = new HashSet<>();
 		for(Row row: this.sheet) {
 			if(row.getRowNum()==0) {
 				continue;
 			}
-			mobileNumbers.add(new Long((long)row.getCell(mobileNumberColumnIndex).getNumericCellValue()));
+			mobileNumbers.add(new Long((long)row.getCell(this.getPhoneNumberColumnIndex()).getNumericCellValue()));
 		}
 		return mobileNumbers;
 	}

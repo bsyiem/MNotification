@@ -81,7 +81,7 @@ public class RegistrationController
 	}
 	
 	@PostMapping(value = "/change_password")
-	public String setNewPassword(@RequestParam(value = "unmatch",required=false) String unmatch, @ModelAttribute("changePassword") ChangePassword changePassword,BindingResult result,Model model) {
+	public String setNewPassword(@ModelAttribute("changePassword") ChangePassword changePassword,BindingResult result,Model model) {
 		model.addAttribute("user",UserUtils.getUserLogin().getEmail());
 		
 		if(result.hasErrors()) {

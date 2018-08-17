@@ -27,7 +27,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	public void configure(HttpSecurity http) throws Exception
 	{
-		http	
+		http
 		  .authorizeRequests()
 		//allow access to all static resources  
 		  	.antMatchers("/js/**","/css/**","/html/**","/images/**")
@@ -35,6 +35,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter
 		//allow only ADMIN to enter the following pages
 		    .antMatchers("/admin/**")
 		    .hasAuthority("ADMIN")
+		    .antMatchers("/authorized/**")
+		    .hasAuthority("AUTHORIZED")
 //			//allow anonymous users to access signup
 		    .antMatchers("/signup")
 		    .anonymous()

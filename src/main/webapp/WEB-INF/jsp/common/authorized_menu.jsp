@@ -5,7 +5,7 @@
    				 Authorized Menu
   			</button>
   			<div class = "dropdown-menu">
-  				<a class = "dropdown-item" href="/send_notification">Send Notification</a>
+  				<a class = "dropdown-item" href="/authorized/send_notification">Send Notification</a>
   			</div>
 		</div>
 	</li>
