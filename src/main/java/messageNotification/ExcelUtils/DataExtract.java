@@ -42,13 +42,13 @@ public class DataExtract {
 	}
 	
 	//returns all the mobile numbers in the excel sheet
-	public Set<Long> getAllMobileNumbers(){
-		Set<Long> mobileNumbers = new HashSet<>();
+	public Set<String> getAllMobileNumbers(){
+		Set<String> mobileNumbers = new HashSet<>();
 		for(Row row: this.sheet) {
 			if(row.getRowNum()==0) {
 				continue;
 			}
-			mobileNumbers.add(new Long((long)row.getCell(this.getPhoneNumberColumnIndex()).getNumericCellValue()));
+			mobileNumbers.add(String.valueOf(row.getCell(this.getPhoneNumberColumnIndex()).getNumericCellValue()));
 		}
 		return mobileNumbers;
 	}

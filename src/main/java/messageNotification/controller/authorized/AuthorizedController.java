@@ -1,5 +1,6 @@
 package messageNotification.controller.authorized;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -23,9 +24,9 @@ public class AuthorizedController {
 		return "/message_notification/notification";
 	}
 	
-	@PostMapping(value="/authorized/send_notification")
+	@PostMapping(value="/authorized/send_notification",produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public Set<Long> getPhoneNumbers(@RequestParam(name = "fileLocation") MultipartFile file, Model model) {
+	public Set<String> getPhoneNumbers(@RequestParam(name = "fileLocation") MultipartFile file, Model model) {
 		model.addAttribute("user",UserUtils.getUserLogin().getEmail());
 		try {
 			DataExtract dataExtract = new DataExtract(file);
@@ -34,6 +35,6 @@ public class AuthorizedController {
 		{
 			e.printStackTrace();
 		}
-		return null;
+		return new HashSet<>();
 	}
 }
