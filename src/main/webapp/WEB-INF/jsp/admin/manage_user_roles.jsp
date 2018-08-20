@@ -27,7 +27,7 @@ $(document).ready(function() {
             		for(var i = 0; i<data.length;i++){
             			if(data[i].role == "ADMIN"){
             				checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"[]\" checked value=\"ADMIN\"></div>";
-            				if(row.email == $("#user").html()){
+            				if(row.email != $("#user").html()){
             					checkBox = "<div class=\"form-check\"><input type=\"checkbox\" class=\"form-check-input\" name=\""+row.email+"[]\" checked disabled value=\"ADMIN\"></div>";
             					checkBox += "<input type = \"hidden\" value=\"ADMIN\" name=\""+row.email+"[]\">"; 
             				}
